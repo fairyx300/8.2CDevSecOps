@@ -23,7 +23,7 @@ pipeline {
         stage('Generate Coverage Report'){
             steps{
                 // Ensure coverage report exists
-                bat 'npm run coverage || true'
+                bat 'npm run coverage || exit /b 0'
             }
         }
 
