@@ -33,11 +33,13 @@ pipeline {
         }
     }
     post{
-        success {
-            mail to: "s225058602@deakin.edu.au",
-            subject: "Build status: SUCCESS",
-            body: "The pipeline has completed successfully."
+        always {
+           emailext(
+            to: 's225058602@deakin.edu.au',
+            subject: "Build status: ${currentBuild.result}",
+            body: "The pipeline has completed with status: ${currentBuild.result}",
+            attachlog: true
+           )
         }
-        
     }
 }
