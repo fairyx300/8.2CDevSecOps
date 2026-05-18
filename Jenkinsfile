@@ -22,7 +22,7 @@ pipeline {
                     emailext(
                         to: 'felicitymorris30@gmail.com',
                         subject: "NPM Test Report",
-                        body: "The NPM tests have completed with status: ${currentStage.result}. Please review the attached log for details on any failures.",
+                        body: "The NPM tests have completed with status: ${currentBuild.currentResult}. Please review the attached log for details on any failures.",
                         attachLog: true
                     )
                 }
@@ -45,7 +45,7 @@ pipeline {
                     emailext(
                         to: 'felicitymorris30@gmail.com',
                         subject: "NPM Audit Report",
-                        body: "The NPM audit has completed with status: ${currentStage.result}. Please review the attached log for details on any vulnerabilities found.",
+                        body: "The NPM audit has completed with status: ${currentBuild.currentResult}. Please review the attached log for details on any vulnerabilities found.",
                         attachLog: true
                     )
                 }
