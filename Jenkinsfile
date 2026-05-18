@@ -38,7 +38,7 @@ pipeline {
             to: 's225058602@deakin.edu.au',
             subject: "Build status: ${currentBuild.result}",
             body: "The pipeline has completed with status: ${currentBuild.result}",
-            attachlog: true
+            attachLog: true
            )
         }
     }
