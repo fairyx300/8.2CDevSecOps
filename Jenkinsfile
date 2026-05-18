@@ -52,14 +52,4 @@ pipeline {
             }
         }
     }
-    post{
-        always {
-           emailext(
-            to: 'felicitymorris30@gmail.com',
-            subject: "Build status: ${currentBuild.result}",
-            body: "The pipeline has completed with status: ${currentBuild.result}",
-            attachLog: true
-           )
-        }
-    }
 }
