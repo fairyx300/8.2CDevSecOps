@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment{
-        SONAR_TOKEN=withCredentials('SONAR_TOKEN') // Replace with your Jenkins credential ID 
-    }
     stages{
         stage('Checkout'){
             steps{
@@ -34,16 +31,13 @@ pipeline {
                 bat 'npm audit || exit /b 0' //This will show known CVEs in the output
             }
         }
-
-        stage('SonarCloud Analysis'){
-            steps{
-                bat '''
-                    curl -L -o sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-windows.zip
-                    tar -xf sonar-scanner.zip
-                    set "PATH=%CD%\\sonar-scanner-5.0.1.3006-windows\\bin;%PATH%"
-                    sonar-scanner.bat -Dsonar.login=%SONAR_TOKEN%
-                '''
-            }
+    }
+    post{
+        success {
+            mail to: "s225058602@deakin.edu.au",
+            subject: "Build status: SUCCESS",
+            body: "The pipeline has completed successfully."
         }
+        
     }
 }
